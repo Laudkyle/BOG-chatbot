@@ -15,7 +15,7 @@ data = torch.load(FILE)
 hidden_size =data["hidden_size"]
 input_size = data["input_size"]
 output_size = data["output_size"]
-all_words = data[all_words]
+all_words = data["all_words"]
 tags = data["tags"]
 model_state = data["model_state"]
 
