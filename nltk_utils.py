@@ -3,7 +3,7 @@ nltk.download('punkt')
 from nltk.stem.porter import PorterStemmer
 import torch
 import torch.nn as nn
-from touch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader
 
 stemmer = PorterStemmer()
 def tokenize(sentence):
