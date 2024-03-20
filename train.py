@@ -73,5 +73,8 @@ for epoch in range(num_epochs):
         words = words.to(device)
         labels = labels.to(device)
 
-        output = model(words)
-        
+        outputs = model(words)
+        loss = criterion(outputs, labels)
+
+        optimizer.zero_grad()
+        loss.backward()
