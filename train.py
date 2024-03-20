@@ -96,3 +96,7 @@ data ={
     "tags":tags
 
 }
+
+FILE = 'data.pth'
+torch.save(data, FILE)
+print(f' Training completed, File saved to {FILE}')
