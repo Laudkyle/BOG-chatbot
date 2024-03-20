@@ -34,7 +34,7 @@ while True:
     sentence =tokenize(sentence)
     X =bag_of_words(sentence, all_words)
     X.reshape(1,X.shape[0])
-    X = X.torch.from_numpy(X)
+    X = torch.from_numpy(X)
     output = model(X)
 
     _,pred = torch.max(output, dim=1)
