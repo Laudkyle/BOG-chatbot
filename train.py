@@ -78,3 +78,16 @@ for epoch in range(num_epochs):
 
         optimizer.zero_grad()
         loss.backward()
+        optimizer.step()
+
+    if epoch + 1 % 100 == 0:
+        print(f'epoch {epoch + 1}/{num_epochs}, loss={loss.item:.4f}')
+
+
+print(f'Final loss, loss={loss.item:.4f}')
+
+
+data ={
+    "model_state":model.state.dict(),
+    
+}
