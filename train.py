@@ -89,5 +89,10 @@ print(f'Final loss, loss={loss.item:.4f}')
 
 data ={
     "model_state":model.state.dict(),
-    
+    "input_size": input_size,
+    "output_size": output_size,
+    "hidden_size": hidden_size,
+    "all_words": all_words,
+    "tags":tags
+
 }
