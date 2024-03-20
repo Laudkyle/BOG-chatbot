@@ -71,3 +71,4 @@ optimizer = torch.optim.Adam(model.parameter(), lr = lr)
 for epoch in range(num_epochs):
     for (words, labels) in trainLoader:
         words = words.to(device)
+        labels = labels.to(device)
