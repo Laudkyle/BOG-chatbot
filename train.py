@@ -25,6 +25,7 @@ ignore_words = ['?','.','!',',']
 all_words = [stem(w) for w in all_words if w not in ignore_words]
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
+print(tags)
 
 X_train = []
 y_train = []
@@ -61,7 +62,7 @@ lr = 0.001
 num_epochs =1000
 
 dataset = ChatDataset()
-trainLoader =DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+trainLoader =DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=2)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = NeuralNet(input_size,hidden_size,output_size).to(device)
@@ -82,15 +83,15 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
 
-    if epoch + 1 % 100 == 0:
-        print(f'epoch {epoch + 1}/{num_epochs}, loss={loss.item:.4f}')
+    if (epoch + 1) % 100 == 0:
+        print(f'epoch {epoch + 1}/{num_epochs}, loss={loss.item():.4f}')
 
 
-print(f'Final loss, loss={loss.item:.4f}')
+print(f'Final loss, loss={loss.item():.4f}')
 
 
 data ={
-    "model_state":model.state.dict(),
+    "model_state":model.state_dict(),
     "input_size": input_size,
     "output_size": output_size,
     "hidden_size": hidden_size,
