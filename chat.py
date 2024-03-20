@@ -34,14 +34,19 @@ while True:
     sentence =tokenize(sentence)
     X =bag_of_words(sentence, all_words)
     X.reshape(1,X.shape[0])
-    X = torch.from_numpy(X)
-    output = model(X)
+    X = torch.from_numpy(X).to(device)
+    output = model(X).to(device)
 
-    _,pred = torch.max(output, dim=1)
+    # Check if the output tensor has a single row
+    if output.shape[0] != 1:
+        # Reshape the output tensor to have a single row
+        output = output.reshape(1, output.shape[0])
+
+    # Get the predicted class and its probability
+    _, pred = torch.max(output, dim=1)
     tag = tags[pred.item()]
+    prob = torch.softmax(output, dim=1)[0][pred.item()]
 
-    probs = torch.softmax(output, dim=1)
-    prob = probs[0][pred.item()]
 
     if prob.item() > 0.75:
         for intent in intents["intents"]:
